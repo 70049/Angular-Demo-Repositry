@@ -1,41 +1,41 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { WeatherService } from './Services/weather.service';
+import { WeatherData } from './models/weather.model';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
 })
-export class AppComponent {
-  title = 'image-gallery';
+export class AppComponent implements OnInit {
+
+  constructor(public weatherService: WeatherService) { }
+
+  public weatherData?: WeatherData;
+  public cityName: string = "newyork";
 
 
-  public images = [
-    {
-      imageSrc: 'https://images.pexels.com/photos/3244513/pexels-photo-3244513.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      imageAlt: 'image1'
-    },
-    {
-      imageSrc: 'https://images.pexels.com/photos/1438761/pexels-photo-1438761.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      imageAlt: 'image2'
-    },
-    {
-      imageSrc: 'https://images.pexels.com/photos/1509582/pexels-photo-1509582.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      imageAlt: 'image3'
-    },
-    {
-      imageSrc: 'https://images.pexels.com/photos/2649403/pexels-photo-2649403.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      imageAlt: 'image4'
-    },
-    {
-      imageSrc: 'https://images.pexels.com/photos/15286/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600',
-      imageAlt: 'image3'
-    },
-    {
-      imageSrc: 'https://images.pexels.com/photos/3408744/pexels-photo-3408744.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      imageAlt: 'image3'
-    },
-    {
-      imageSrc: 'https://images.pexels.com/photos/46235/emperor-penguins-antarctic-life-animal-46235.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-      imageAlt: 'image3'
-    },
-  ]
+  ngOnInit(): void {
+    this.getWeatherInfo(this.cityName);
+    this.cityName = '';
+
+  }
+
+  public searchFeild = () => {
+    this.getWeatherInfo(this.cityName);
+    this.cityName = '';
+  }
+
+  private getWeatherInfo = (cityName: string) => {
+    this.weatherService.getWeatherData(cityName)
+      .subscribe({
+        next: (res) => {
+          this.weatherData = res;
+          console.log(res);
+        },
+        error: (error) => {
+          console.log(error);
+        }
+      });
+  }
+
 }

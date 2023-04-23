@@ -3,19 +3,19 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NoPageFoundComponent } from './no-page-found/no-page-found.component';
-import { CrouselModule } from './crousel/crousel.module';
-
+import { HttpClientModule } from '@angular/common/http'
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
-    NoPageFoundComponent,
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    CrouselModule
+    HttpClientModule,
+    FormsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { WeatherData } from '../models/weather.model';
+import { myWeather } from '../models/weather.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -13,15 +13,9 @@ export class WeatherService {
     private http: HttpClient
   ) { }
 
-  public getWeatherData = (Cityname: string): Observable<WeatherData> => {
-    return this.http.get<WeatherData>(environment.weatherApiBaseUrl, {
-      headers: new HttpHeaders()
-        .set(environment.XRapidAPIHostHeaderName, environment.XRapidAPIHostHeaderValue)
-        .set(environment.XRapidAPIKeyHeaderName, environment.XRapidAPIKeyHeaderValue),
-      params: new HttpParams()
-        .set('q', Cityname)
-        .set('appid', 'da0f9c8d90bde7e619c3ec47766a42f4')
-        .set('appid', 'da0f9c8d90bde7e619c3ec47766a42f4')
-    })
+
+
+  public getWeatherData(cityName: string) {
+    return this.http.get('https://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&appid=76c425f83d3dd4a696721e5d4d4cc3fe&units=imperial');
   }
 }

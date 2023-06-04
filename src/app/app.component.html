@@ -2,22 +2,26 @@
 
 
 <div class="search">
-        <form (submit)="searchFeild()" #form="ngForm">
-                <input type="text" name="city" [(ngModel)]="cityName" placeholder="Search city">
-        </form>
+        <!-- <form (submit)="searchFeild(this.city)" #form="ngForm">
+                <input type="text" name="city" [(ngModel)]="city" placeholder="Search city">
+        </form> -->
+        <input type="text" name="city" [(ngModel)]="city" placeholder="Search city">
+        <button (click)="searchFeild(city)">Search</button>
 </div>
 
 
+
+
 <!-- API DATA -->
-<!-- 
-<div *ngIf="weatherData" class="container">
+
+<div *ngIf="myWeather" class="container">
         <div class="upper-data">
-                <img src="../assets/hot_sky.png" *ngIf="weatherData.main.temp > 15" alt="image">
-                <img src="../assets/cold_sky.png" *ngIf="weatherData.main.temp <= 15" alt="image">
+                <img src="../assets/hot_sky.png" *ngIf="myWeather.main.temp > 15" alt="image">
+                <img src="../assets/cold_sky.png" *ngIf="myWeather.main.temp <= 15" alt="image">
 
                 <div class="weather-data">
-                        <div class="location">{{weatherData.name}}</div>
-                        <div class="temprature"> {{weatherData.main.temp | number: '1.0-0'}}°C </div>
+                        <div class="location">{{myWeather.name}}</div>
+                        <div class="temprature"> {{temperature | number: '1.0-0'}}°C </div>
                 </div>
 
         </div>
@@ -32,7 +36,8 @@
                                         <span>min</span>
                                 </div>
                                 <div class="info-block-value">
-                                        {{weatherData.main.temp_min | number: '1.0-0'}}°C
+                                        <!-- {{myWeather.main.temp_min | number: '1.0-0'}}°C -->
+                                        {{minTemp | number: '1.0-0'}}°C
                                 </div>
                         </div>
 
@@ -42,7 +47,8 @@
                                         <span>max</span>
                                 </div>
                                 <div class="info-block-value">
-                                        {{weatherData.main.temp_max | number: '1.0-0'}}°C
+                                        <!-- {{myWeather.main.temp_max | number: '1.0-0'}}°C -->
+                                        {{maxTemp | number: '1.0-0'}}°C
                                 </div>
                         </div>
 
@@ -52,7 +58,7 @@
                                         <span>humidity</span>
                                 </div>
                                 <div class="info-block-value">
-                                        {{weatherData.main.humidity}} %
+                                        {{myWeather.main.humidity}} %
                                 </div>
                         </div>
 
@@ -62,20 +68,20 @@
                                         <span>wind</span>
                                 </div>
                                 <div class="info-block-value">
-                                        {{weatherData.wind.speed}} km/h
+                                        {{myWeather.wind.speed}} km/h
                                 </div>
                         </div>
                 </div>
         </div>
-</div> -->
+</div>
 
 
 <!-- STATIC DATA -->
 
-<div class="container">
+<!-- <div class="container">
         <div class="upper-data">
-                <img src="../assets/hot_sky.png" *ngIf="14 > 15" alt="image">
-                <img src="../assets/cold_sky.png" *ngIf="14 <= 15" alt="image">
+                <img src="../assets/hot_sky.png" *ngIf="14 < 15" alt="image">
+                <img src="../assets/cold_sky.png" *ngIf="14 >= 15" alt="image">
 
                 <div class="weather-data">
                         <div class="location">New York</div>
@@ -129,4 +135,4 @@
                         </div>
                 </div>
         </div>
-</div>
+</div> -->
